@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .inner
+    h2= store.name
+    p= store.description
+    - const tags = store.tags || []
+    ul
+      each tag in tags
+        li.list= tag

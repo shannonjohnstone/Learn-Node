@@ -1,0 +1,14 @@
+mixin storeCard(store = {})
+  .store
+    - function limitText(words, length) { return words.split(' ').slice(0, length).join(' ') }
+    .store__hero
+      .store__actions
+        .store__action.store__action--edit
+          a(href=`/stores/${store._id}/edit`)
+            != h.icon('pencil')
+      img(src=`/uploads/${store.photo || 'store.png'}`)
+      h2.title
+        - const limitedName = limitText(store.name, 3)
+        a(href=`/stores/${store.slug}`) #{limitedName}
+    .store__details
+      p= limitText(store.description, 25)
