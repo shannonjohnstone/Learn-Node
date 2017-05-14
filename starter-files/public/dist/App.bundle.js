@@ -71,44 +71,57 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});function autocomplete(input,latInput,lngInput){
-if(!input)return;
-var dropdown=new google.maps.places.Autocomplete(input);
-dropdown.addListener('place_changed',function(){
-var place=dropdown.getPlace();
-latInput.value=place.geometry.location.lat();
-lngInput.value=place.geometry.location.lng();
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+function autocomplete(input, latInput, lngInput) {
+  if (!input) return; // skips this fn from running if there is not input
+  var dropdown = new google.maps.places.Autocomplete(input);
+  dropdown.addListener('place_changed', function () {
+    var place = dropdown.getPlace();
+    latInput.value = place.geometry.location.lat();
+    lngInput.value = place.geometry.location.lng();
+  });
 
+  // disable enter submitting form from address field with enter
+  input.on('keydown', function (e) {
+    return e.keyCode === 13 && e.preventDefault();
+  });
+}
 
-input.on('keydown',function(e){return e.keyCode===13&&e.preventDefault();});
-}exports.default=
-
-autocomplete;
+exports.default = autocomplete;
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});
 
-var $=document.querySelector.bind(document);
-var $$=document.querySelectorAll.bind(document);
 
-Node.prototype.on=window.on=function(name,fn){
-this.addEventListener(name,fn);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// based on https://gist.github.com/paulirish/12fb951a8b893a454b32
+
+var $ = document.querySelector.bind(document);
+var $$ = document.querySelectorAll.bind(document);
+
+Node.prototype.on = window.on = function (name, fn) {
+  this.addEventListener(name, fn);
 };
 
-NodeList.prototype.__proto__=Array.prototype;
+NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
 
-NodeList.prototype.on=NodeList.prototype.addEventListener=function(name,fn){
-this.forEach(function(elem){
-elem.on(name,fn);
-});
-};exports.
+NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
+  this.forEach(function (elem) {
+    elem.on(name, fn);
+  });
+};
 
-$=$;exports.$$=$$;
+exports.$ = $;
+exports.$$ = $$;
 
 /***/ }),
 /* 2 */
@@ -121,12 +134,19 @@ $=$;exports.$$=$$;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
 __webpack_require__(2);
 
-var _bling=__webpack_require__(1);
-var _autocomplete=__webpack_require__(0);var _autocomplete2=_interopRequireDefault(_autocomplete);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _bling = __webpack_require__(1);
 
-(0,_autocomplete2.default)((0,_bling.$)('#address'),(0,_bling.$)('#lat'),(0,_bling.$)('#lng'));
+var _autocomplete = __webpack_require__(0);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _autocomplete2.default)((0, _bling.$)('#address'), (0, _bling.$)('#lat'), (0, _bling.$)('#lng'));
 
 /***/ })
 /******/ ]);

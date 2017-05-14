@@ -1,20 +1,22 @@
 const homePage = require('./homePage')
 const getStores = require('./getStores')
-const getStore = require('./getStore')
+const getStoreBySlug = require('./getStore')
 const addStore = require('./addStore')
 const createStore = require('./createStore')
 const editStore = require('./editStore')
 const updateStore = require('./updateStore')
 const { upload, resize } = require('./uploadResize')
+const { getStoresByTag } = require('./tags')
 
 module.exports = {
   getStores,
   addStore,
   createStore,
   editStore,
-  getStore,
+  getStoreBySlug,
   getStores,
   updateStore,
   upload,
-  resize
+  resize,
+  getStoresByTag
 }

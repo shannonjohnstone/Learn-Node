@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const storeController = require('../controllers/storeController/storeController')
 const storeController = require('../controllers/storeController')
-const { catchErrors } = require('../handlers/errorHandlers')
+const { catchErrors, myError } = require('../handlers/errorHandlers')
 
 router.get('/', catchErrors(storeController.getStores))
 router.get('/stores', catchErrors(storeController.getStores))
@@ -13,6 +12,7 @@ router.post('/add',
   catchErrors(storeController.resize),
   catchErrors(storeController.createStore)
 )
+
 router.post('/add/:id',
   storeController.upload,
   catchErrors(storeController.resize),
@@ -20,6 +20,9 @@ router.post('/add/:id',
 )
 
 router.get('/stores/:id/edit', catchErrors(storeController.editStore))
-router.get('/stores/:slug', catchErrors(storeController.getStore))
+router.get('/store/:slug', catchErrors(storeController.getStoreBySlug))
+
+router.get('/tags', catchErrors(storeController.getStoresByTag))
+router.get('/tags/:tag', catchErrors(storeController.getStoresByTag))
 
 module.exports = router;

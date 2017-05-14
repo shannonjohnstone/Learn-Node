@@ -9,6 +9,6 @@ mixin storeCard(store = {})
       img(src=`/uploads/${store.photo || 'store.png'}`)
       h2.title
         - const limitedName = limitText(store.name, 3)
-        a(href=`/stores/${store.slug}`) #{limitedName}
+        a(href=`/store/${store.slug}`) #{limitedName}
     .store__details
       p= limitText(store.description, 25)
