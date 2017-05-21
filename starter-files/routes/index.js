@@ -28,14 +28,14 @@ router.get('/store/:slug', catchErrors(storeController.getStoreBySlug))
 router.get('/tags', catchErrors(storeController.getStoresByTag))
 router.get('/tags/:tag', catchErrors(storeController.getStoresByTag))
 
-router.get('/register', userController.registerForm)
+router.get('/register', userController.registerRender)
 router.post('/register', userController.validateRegister, userController.register, authController.login) // validate registration data, register the user and then log them in
 
-router.get('/login', userController.loginForm)
+router.get('/login', userController.loginRender)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
 
-router.get('/account', authController.isLoggedIn, userController.account)
+router.get('/account', authController.isLoggedIn, userController.accountRender)
 router.post('/account', catchErrors(userController.updateAccount))
 router.post('/account/forgot', catchErrors(authController.forgot))
 router.get('/account/reset/:token', catchErrors(authController.reset))

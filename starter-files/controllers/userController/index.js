@@ -1,14 +1,14 @@
-const loginForm = require('./loginForm')
-const registerForm = require('./registerForm')
-const account = require('./account')
+const loginRender = require('./loginRender')
+const registerRender = require('./registerRender')
+const accountRender = require('./accountRender')
 const { validateRegister, register } = require('./validateRegister')
 const updateAccount = require('./updateAccount')
 
 module.exports = {
-  loginForm,
-  registerForm,
+  loginRender,
+  registerRender,
   validateRegister,
   register,
-  account,
+  accountRender,
   updateAccount
 }
