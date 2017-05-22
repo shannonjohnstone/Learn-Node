@@ -10,6 +10,7 @@ const { upload, resize } = require('./uploadResize')
 const { getStoresByTag } = require('./tags')
 const searchStores = require('./searchStores')
 const mapStores = require('./mapStores')
+const heartStore = require('./heartStore')
 
 module.exports = {
   mapPage,
@@ -24,5 +25,6 @@ module.exports = {
   resize,
   getStoresByTag,
   searchStores,
-  mapStores
+  mapStores,
+  heartStore
 }

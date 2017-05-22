@@ -3,6 +3,13 @@ mixin storeCard(store = {})
     - function limitText(words, length) { return words.split(' ').slice(0, length).join(' ') }
     .store__hero
       .store__actions
+        if user
+          .store__action.store__action--heart
+            form.heart(action=`/api/v1/stores/${store._id}/heart` method="POST")
+              - const heartStrings = user.hearts.map(obj => obj.toString())
+              - const heartClass = heartStrings.includes(store._id.toString()) ? 'heart__button--hearted' : ''
+              button.heart__button(type="submit" name="heart" class=heartClass)
+                != h.icon('heart')
         //- this will now only display if user exist and if the current user matched the author
         if user && store.author.equals(user._id)
           .store__action.store__action--edit
