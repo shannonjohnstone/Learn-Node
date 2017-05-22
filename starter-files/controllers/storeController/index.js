@@ -1,4 +1,5 @@
 const homePage = require('./homePage')
+const mapPage = require('./mapPage')
 const getStores = require('./getStores')
 const getStoreBySlug = require('./getStore')
 const addStore = require('./addStore')
@@ -7,8 +8,11 @@ const editStore = require('./editStore')
 const updateStore = require('./updateStore')
 const { upload, resize } = require('./uploadResize')
 const { getStoresByTag } = require('./tags')
+const searchStores = require('./searchStores')
+const mapStores = require('./mapStores')
 
 module.exports = {
+  mapPage,
   getStores,
   addStore,
   createStore,
@@ -18,5 +22,7 @@ module.exports = {
   updateStore,
   upload,
   resize,
-  getStoresByTag
+  getStoresByTag,
+  searchStores,
+  mapStores
 }

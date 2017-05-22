@@ -3,9 +3,11 @@ mixin storeCard(store = {})
     - function limitText(words, length) { return words.split(' ').slice(0, length).join(' ') }
     .store__hero
       .store__actions
-        .store__action.store__action--edit
-          a(href=`/stores/${store._id}/edit`)
-            != h.icon('pencil')
+        //- this will now only display if user exist and if the current user matched the author
+        if user && store.author.equals(user._id)
+          .store__action.store__action--edit
+            a(href=`/stores/${store._id}/edit`)
+              != h.icon('pencil')
       img(src=`/uploads/${store.photo || 'store.png'}`)
       h2.title
         - const limitedName = limitText(store.name, 3)

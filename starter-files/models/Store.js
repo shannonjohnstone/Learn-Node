@@ -14,8 +14,7 @@ const storeSchema = new mongoose.Schema({
     trim: true
   },
   tags: {
-    type: [String],
-    required: 'Please enter at least 1 tag'
+    type: [String]
   },
   created: {
     type: Date,
@@ -35,8 +34,21 @@ const storeSchema = new mongoose.Schema({
       required: 'You must supply an address!'
     }
   },
-  photo: String
+  photo: String,
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'You must supply an author'
+  }
 })
+
+// define indexes
+storeSchema.index({
+  name: 'text',
+  description: 'text'
+})
+
+storeSchema.index({ location: '2dsphere' })
 
 storeSchema.pre('save', async function(next) {
   if (!this.isModified('name')) { return next() } // this will skip the slug method if the name value has not been changed
