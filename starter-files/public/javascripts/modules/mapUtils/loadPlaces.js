@@ -7,13 +7,14 @@ import apiCaller from '../apiCaller'
  * @return {array} - marker locations
  */
 const createMarkers = (map, places, bounds) => {
+  // create array of location pins and set the pin position on the map
   return places.map(place => {
     const [placeLng, placeLat] = place.location.coordinates
     const position = { lat: placeLat, lng: placeLng }
-    bounds.extend(position) // this is what puts the location on the map
+    bounds.extend(position)
     const marker = new google.maps.Marker({ map, position })
     marker.place = place;
-    return 'shannon'
+    return marker
   })
 }
 
@@ -51,8 +52,8 @@ const loadPlaces = async function(map, lat = 43.2, lng = -79.8) {
   const infoWindow = new google.maps.InfoWindow() // InfoWindow is for creating an instance maps the popup window
 
   // create markers and info boxes
-  createMarkers(map, places, bounds)
-  // createInfoBox(map, markers, infoWindow)
+  const markers = createMarkers(map, places, bounds)
+  createInfoBox(map, markers, infoWindow)
 
   // both setCenter/fitBounds are used to center the map on search, it find location markers in ths new location then center and zooms
   map.setCenter(bounds.getCenter())

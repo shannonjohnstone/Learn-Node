@@ -2804,16 +2804,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @return {array} - marker locations
  */
 var createMarkers = function createMarkers(map, places, bounds) {
+  // create array of location pins and set the pin position on the map
   return places.map(function (place) {
     var _place$location$coord = _slicedToArray(place.location.coordinates, 2),
         placeLng = _place$location$coord[0],
         placeLat = _place$location$coord[1];
 
     var position = { lat: placeLat, lng: placeLng };
-    bounds.extend(position); // this is what puts the location on the map
+    bounds.extend(position);
     var marker = new google.maps.Marker({ map: map, position: position });
     marker.place = place;
-    return 'shannon';
+    return marker;
   });
 };
 
@@ -2851,8 +2852,8 @@ var loadPlaces = async function loadPlaces(map) {
   var infoWindow = new google.maps.InfoWindow(); // InfoWindow is for creating an instance maps the popup window
 
   // create markers and info boxes
-  createMarkers(map, places, bounds);
-  // createInfoBox(map, markers, infoWindow)
+  var markers = createMarkers(map, places, bounds);
+  createInfoBox(map, markers, infoWindow);
 
   // both setCenter/fitBounds are used to center the map on search, it find location markers in ths new location then center and zooms
   map.setCenter(bounds.getCenter());
