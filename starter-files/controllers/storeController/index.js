@@ -11,8 +11,10 @@ const { getStoresByTag } = require('./tags')
 const searchStores = require('./searchStores')
 const mapStores = require('./mapStores')
 const heartStore = require('./heartStore')
+const getHearts = require('./getHearts')
 
 module.exports = {
+  getHearts,
   mapPage,
   getStores,
   addStore,
